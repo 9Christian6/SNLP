@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\section*{Solution}
+
+Consider rolling a fair 6-sided die twice. The sample space \( S \) contains \( 6 \times 6 = 36 \) equally likely outcomes.
+
+\subsection*{(a) Compute \( P(A), P(C), P(E) \)}
+
+\textbf{Event A:} The sum of the two outcomes is strictly larger than 10.
+
+\begin{itemize}
+    \item Outcomes: (5,6), (6,5), (6,6)
+    \item Number of outcomes: 3
+    \item \( P(A) = \frac{3}{36} = \frac{1}{12} \)
+\end{itemize}
+
+\textbf{Event C:} At least one of the two rolls is a 3.
+
+\begin{itemize}
+    \item Total outcomes: 36
+    \item Outcomes with no 3: \( 5 \times 5 = 25 \)
+    \item Outcomes with at least one 3: \( 36 - 25 = 11 \)
+    \item \( P(C) = \frac{11}{36} \)
+\end{itemize}
+
+\textbf{Event E:} The absolute difference between the two rolls is exactly 1.
+
+\begin{itemize}
+    \item Outcomes: (1,2), (2,1), (2,3), (3,2), (3,4), (4,3), (4,5), (5,4), (5,6), (6,5)
+    \item Number of outcomes: 10
+    \item \( P(E) = \frac{10}{36} = \frac{5}{18} \)
+\end{itemize}
+
+\subsection*{(b) Is event A independent of event B?}
+
+\textbf{Event B:} At least one of the two rolls is a 6.
+
+\begin{itemize}
+    \item \( P(B) = 1 - \left( \frac{5}{6} \cdot \frac{5}{6} \right) = 1 - \frac{25}{36} = \frac{11}{36} \)
+    \item \( A \cap B = A \) since all outcomes in A contain a 6
+    \item \( P(A \cap B) = P(A) = \frac{3}{36} \)
+    \item \( P(A) \cdot P(B) = \frac{3}{36} \cdot \frac{11}{36} = \frac{33}{1296} \)
+\end{itemize}
+
+Since \( P(A \cap B) \ne P(A)P(B) \), events A and B are \textbf{not independent}.
+
+\subsection*{(c) Is event A independent of event C?}
+
+\begin{itemize}
+    \item \( P(A) = \frac{3}{36}, \quad P(C) = \frac{11}{36} \)
+    \item None of the outcomes in A contain a 3, so \( A \cap C = \emptyset \)
+    \item \( P(A \cap C) = 0 \)
+    \item \( P(A) \cdot P(C) = \frac{3}{36} \cdot \frac{11}{36} = \frac{33}{1296} \)
+\end{itemize}
+
+Since \( P(A \cap C) \ne P(A)P(C) \), events A and C are \textbf{not independent}.
+
+\subsection*{(d) Are events D and E independent?}
+
+\textbf{Event D:} Second roll is greater than the first. \\
+\textbf{Event E:} Absolute difference between rolls is 1.
+
+\begin{itemize}
+    \item Favorable outcomes for D:
+    \[
+    \text{For } i = 1 \text{ to } 5, \text{ number of } j > i = 5 + 4 + 3 + 2 + 1 = 15
+    \]
+    \item \( P(D) = \frac{15}{36} \)
+    \item \( P(E) = \frac{10}{36} \) (from part a)
+    \item \( D \cap E \): Increasing pairs with difference 1: (1,2), (2,3), (3,4), (4,5), (5,6) → 5 outcomes
+    \item \( P(D \cap E) = \frac{5}{36} \)
+    \item \( P(D) \cdot P(E) = \frac{15}{36} \cdot \frac{10}{36} = \frac{150}{1296} \)
+\end{itemize}
+
+Since \( P(D \cap E) = \frac{180}{1296} \ne \frac{150}{1296} \), events D and E are \textbf{not independent}.
+
+\section*{Bayes' Theorem and Medical Testing}
+
+Bayes' Theorem is given by:
+
+\[
+P(H|E) = \frac{P(E|H) \cdot P(H)}{P(E)}
+\]
+
+Where:
+\begin{itemize}
+    \item \( P(H) \): prior probability that the person has the disease
+    \item \( P(E|H) \): probability of a positive test given disease (true positive rate)
+    \item \( P(E|\neg H) \): probability of a positive test given no disease (false positive rate)
+    \item \( P(E) \): total probability of testing positive
+    \item \( P(H|E) \): probability of having the disease given a positive test (posterior)
+\end{itemize}
+
+\subsection*{(a) Prior probability}
+
+We are given:
+\[
+P(H) = 0.02
+\]
+
+\subsection*{(b) Posterior probability given a positive test}
+
+Given:
+\[
+P(E|H) = 0.95, \quad P(E|\neg H) = 0.05, \quad P(\neg H) = 1 - P(H) = 0.98
+\]
+
+Compute total probability of a positive test:
+\[
+P(E) = P(E|H) \cdot P(H) + P(E|\neg H) \cdot P(\neg H)
+\]
+\[
+P(E) = (0.95)(0.02) + (0.05)(0.98) = 0.019 + 0.049 = 0.068
+\]
+
+Apply Bayes' Theorem:
+\[
+P(H|E) = \frac{0.95 \cdot 0.02}{0.068} = \frac{0.019}{0.068} \approx 0.2794
+\]
+
+\subsection*{Final Answers}
+\begin{itemize}
+    \item[(a)] \( P(H) = 0.02 \)
+    \item[(b)] \( P(H|E) \approx 0.279 \) or 27.94\%
+\end{itemize}
+
+\end{document}
